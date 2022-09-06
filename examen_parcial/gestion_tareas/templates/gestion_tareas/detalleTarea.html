@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Crear tarea</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,500" rel="stylesheet" type="text/css">
+
+</head>
+<body>
+    <div class="container">
+        <h1>Detalles de tarea</h1>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Descripción</th>
+                <th scope="col">Responsable</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Fecha de creación</th>
+                <th scope="col">Fecha de entrega</th>
+            </tr>
+            </thead>
+            <tbody>
+                {% for tarea in tarea_detalle %}
+                <tr>
+                    <td>{{tarea.id}}</td>
+                    <td>{{tarea.descripcion}}</td>
+                    <td>{{tarea.responsable}}</td>
+                    <td>{{tarea.estado}}</td>
+                    <td>{{tarea.fecha_creacion}}</td>
+                    <td>{{tarea.fecha_entrega}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a class="btn btn-success" href="{% url 'gestion_tareas:dashboard' %}">Regresar</a>
+    </div>
+</body>
+</html>
