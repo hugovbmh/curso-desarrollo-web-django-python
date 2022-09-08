@@ -10,6 +10,12 @@
     <body>
         <div class="container">
             <h1>Dashboard tarea</h1>
+            <div class="float-start">
+                <a href="{% url 'gestion_tareas:ingreso' %}" class="btn btn-success"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-left" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0v2z"/>
+                    <path fill-rule="evenodd" d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z"/>
+                  </svg> Salir</a>
+            </div>
             <div class="float-end">
                 <a href="{% url 'gestion_tareas:crearTarea' %}" class="btn btn-success"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-card-text" viewBox="0 0 16 16">
                     <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z"/>
@@ -17,7 +23,7 @@
                   </svg> Crear tarea</a>
             </div>
             <table class="table">
-                <thead>
+                <thead style="text-align: center;">
                     <th>ID</th>
                     <th>Tarea</th>
                     <th>Estado</th>
@@ -25,12 +31,26 @@
                     <th>Editar</th>
                     <th>Borrar</th>
                 </thead>
-                <tbody>
+                <tbody style="text-align: center;">
                     {% for tarea in total_tareas %}
                     <tr>
                         <td>{{tarea.id}}</td>
                         <td>{{tarea.descripcion}}</td>
-                        <td>{{tarea.estado}}</td>
+                        {% if tarea.estado == 'PROGRESO' %}
+                        <td style="background-color: rgb(24, 209, 24); font-size: 30px; font-weight: bold;">{{tarea.estado}}</td>
+                        {% endif %}
+                        {% if tarea.estado == 'FINALIZANDO' %}
+                        <td style="background-color: rgb(255, 255, 0); font-size: 30px; font-weight: bold;">{{tarea.estado}}</td>
+                        {% endif %}
+                        {% if tarea.estado == 'FINALIZADO' %}
+                        <td style="background-color: rgb(113, 219, 255); font-size: 30px; font-weight: bold;">{{tarea.estado}}</td>
+                        {% endif %}
+                        {% if tarea.estado == 'PENDIENTE' %}
+                        <td style="background-color: rgb(255, 55, 55); font-size: 30px; font-weight: bold;">{{tarea.estado}}</td>
+                        {% endif %}
+                        {% if tarea.estado == 'FALLIDO' %}
+                        <td style="background-color: rgb(255, 0, 234); font-size: 30px; font-weight: bold;">{{tarea.estado}}</td>
+                        {% endif %}
                         <td><a class="btn btn-info"  href="{% url 'gestion_tareas:detalleTarea' tarea.id %}"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
                             <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
                             <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
@@ -43,6 +63,9 @@
                             <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
                             <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
                           </svg> Eliminar</a></td>
+                        <td><a class="btn btn-info" style="background-color: rgb(55, 255, 235);" href="{% url 'gestion_tareas:finalizarTarea' tarea.id %}">
+                            Finalizar tarea</a>
+                          </td>
                     </tr>
                     {% endfor %}
                 </tbody>

@@ -31,14 +31,14 @@
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label for="form_email">Fecha de creación</label>
-                                    <input type="date" class="form-control" value="{{tarea_a_editar.fecha_creacion}}" name="fechaCreacion">
+                                    <input type="date" class="form-control" value="{{tarea_a_editar.fecha_creacion|date:'Y-m-d'}}" name="fechaCreacion">
                                     
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label for="form_phone">Fecha de entrega</label>
-                                    <input type="date" class="form-control" value="{{tarea_a_editar.fecha_entrega}}" name="fechaEntrega">
+                                    <input type="date" class="form-control" value="{{tarea_a_editar.fecha_entrega|date:'Y-m-d'}}" name="fechaEntrega">
                                     
                                 </div>
                             </div>
@@ -48,12 +48,6 @@
                                 <div class="form-group">
                                     <label for="form_email">Responsable</label>
                                     <input id="form_email" type="text"  class="form-control" value="{{tarea_a_editar.responsable}}" name="responsableTarea">
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="form-group">
-                                    <label for="form_phone">Estado</label>
-                                    <input id="form_phone" type="text" class="form-control" value="{{tarea_a_editar.estado}}" name="estadoTarea">
                                 </div>
                             </div>
                         </div>

@@ -2,19 +2,25 @@
 <html lang="en">
     <head>
         <title>Ingreso</title>
+        {% load static %}
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+        <link href="{% static 'gestion_tareas/style.css' %}" rel="stylesheet">
+        
     </head>
     <body>
-        <div class="container">    
-            <div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">                    
+        <div class="container d-flex justify-content-center">    
+            <div id="loginbox" style="margin-top:50px;" class="mainbox col-md-2 col-md-offset-3 col-sm-8 col-sm-offset-2">                    
                 <div class="panel panel-info">
                     <div class="panel-heading">
-                        <div class="panel-title">
-                            Ingreso
+                        <div class="panel-title" style="text-align: center;">
+                            <h4>Ingreso</h4>
                         </div>
+                        <br>
+                        <h6>Usuario: hugo</h6>
+                        <h6>Contraseña: 123456</h6>
                     </div>     
                     <div style="padding-top:30px" class="panel-body">
                         <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12">
@@ -22,20 +28,21 @@
                         <form class="form-horizontal" method="POST" action="{% url 'gestion_tareas:ingreso' %}">
                             {% csrf_token %}
                             <div style="margin-bottom: 25px" class="input-group">
-                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                <span class="input-group-addon"></span>
                                 <input type="text" class="form-control" name="nombre" placeholder="usuario">                                        
                             </div>   
                             <div style="margin-bottom: 25px" class="input-group">
-                                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                                <span class="input-group-addon"></span>
                                 <input type="password" class="form-control" name="password" placeholder="contraseña">
                             </div>
                             <div style="margin-top:10px" class="form-group">
                                 <!-- Button -->
-                                <div class="col-sm-12 controls">
+                                <div class="col-sm-12 controls" style="text-align: center;">
                                     <button type="submit" href="{% url 'gestion_tareas:ingreso' %}" class="btn btn-success">Ingreso</button>
                                 </div>
+                                <br>
                                 {% if mensaje %}
-                                {{mensaje}}
+                                <div style="text-align: center;">{{mensaje}}</div>
                                 {% endif%}
                             </div>
                         </form>
